@@ -1,0 +1,229 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+  background-color: ivory;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* <=========> Header <=========>*/
+.header {
+  z-index: 1;
+  /* Create a new container for organization */
+  display: flex; /* Enable flexbox layout */
+  justify-content: space-around; /* Distribute elements horizontally */
+  align-items: center; /* Align vertically on main axis */
+  padding: 1rem; /* Add some padding for visual appeal (optional) */
+}
+
+.hero-section{
+  /* Ensure the image takes up the entire width of the container */
+  width: 100%;
+  /* object-fit: cover; */
+}
+
+.hero-section > img {
+/* Remove any inline styles or unnecessary attributes */
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+z-index: 0;
+}
+
+.logo-container {
+  flex: 0 0 auto; /* Allow logo to shrink to content, preventing overflow */
+}
+
+.logo-container img {
+  /* filter: invert(1); */
+  width: 250px;
+}
+
+/* .nav-items ul { */
+/* nested ul target vs immediate chils ul */
+.nav-items > ul {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+  margin: 0; /* Remove default margin */
+}
+
+.nav-items > ul > li {
+  padding: 0.5rem 1rem; /* Example padding */
+  border: none;
+  outline: none;
+  border-radius: 15px; /* Example rounded corners */
+}
+
+.nav-items a {
+
+  text-decoration: none;
+  background-color: transparent;
+  color: white;
+  font-weight: 700;
+}
+
+.nav-items li:hover {
+  
+  background: #ff2900;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-items li:nth-child(1) {
+  background: #ff2900;
+}
+.nav-items li:nth-child(2) {
+  background: #ff2900;
+}
+.nav-items li:nth-child(3) {
+  background: #1f1f1f;
+}
+
+/* <=========> Search <=========>*/
+.search-container {
+
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.search-container > h1 {
+  color: #1f1f1f;
+  font-size: 2.8rem;
+}
+
+.search-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.search-div > input {
+  padding: 1rem;
+  border-radius: 25px;
+  min-width: 300px;
+  height: 50px;
+  background-color: #ff2900;
+  color: white;
+  font-weight: bold;
+  border: none;
+}
+
+.search-div > input::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 0.8; /* Firefox */
+  text-align: center;
+  font-weight: bold;
+}
+
+.search-div > button {
+  padding: 1rem 1rem;
+  border-radius: 25px;
+  background-color: #1f1f1f;
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+/* <=========> Restaurant Container <=========>*/
+
+.restaurant-container {
+  /* display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  padding: 3rem;
+  margin: 1rem;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  /* border: 1px solid red; */
+  /* border-radius: 15px; */
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+}
+
+/* <=========> Restaurant Card <=========>*/
+.restaurant-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 15px;
+  transition: all 0.3s ease-in-out;
+
+  -webkit-box-shadow: 8px 4px 30px 4px rgba(0, 0, 0, 0.23);
+  -moz-box-shadow: 8px 4px 30px 4px rgba(0, 0, 0, 0.23);
+  box-shadow: 8px 4px 30px 4px rgba(0, 0, 0, 0.23);
+  /* cursor: pointer; */
+}
+
+/* Card image styles */
+.card-image {
+  flex: 1 1 auto; /* Ensures image takes up remaining space */
+  background-position: center; /* Center image within container */
+  /* background-size: contain; */
+  background-size: cover;
+  border-radius: 10px;
+  height: 250px;
+  overflow: hidden;
+}
+
+.card-image > img {
+  /* aspect-ratio: 3/2; */
+  max-width: 100%;
+  height: 100%;
+  transition: ease-in-out 0.5s;
+}
+
+.restaurant-card > a > button {
+  margin-top: 1rem;
+  padding: 0.5rem 0.5rem;
+  border-radius: 25px;
+  background-color: rgb(94, 89, 89);
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.restaurant-card p {
+  line-height: 1.5; /* Improves readability */
+}
+
+.restaurant-card button:hover {
+  background-color: #ff2900; /* Adjust button hover color as needed */
+}
+
+/* Hover effect on card image */
+.restaurant-card:hover .card-image > img {
+  transform: scale(1.05); /* Zoom image on hover by 10% */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .nav-items ul {
+    flex-direction: column;
+    /* align-items: flex-end;  */
+    justify-content: center;
+  }
+}

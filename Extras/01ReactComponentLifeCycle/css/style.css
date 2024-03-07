@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+  background-color: ivory;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.app {
+  padding: 20vw;
+  padding-top: 5vw;
+}
+
+.places-list {
+  margin-top: 2rem;
+  list-style: none;
+}
+
+.places-list > ul {
+  list-style: none;
+  font-size: 25px;
+}
+
+.counter-buttons {
+  margin-top: 1rem;
+  display: flex;
+  gap: 10px;
+}
+
+.mount-buttons {
+  margin-top: 1rem;
+  display: flex;
+  gap: 10px;
+}
+
+.mount-buttons > button {
+  background-color: chartreuse;
+}
+h1 {
+  color: rgb(18, 43, 90);
+}
+h2 {
+  color: rgb(78, 115, 184);
+}
+
+P {
+  color: #1f1f1f;
+}
+
+span {
+  color: red;
+}
+
+button {
+  padding: 0.5rem;
+  border-radius: 8px;
+  background-color: rgb(46, 214, 214);
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: rgb(111, 252, 252);
+}
