@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Test</title>
-    <!-- <link rel="stylesheet" href="./style.css"> -->
+    <link rel="stylesheet" href="./style.css">
 
     <style>
         body {
@@ -18,18 +18,42 @@
             color: #cf2f0c;
             text-align: left;
         }
+
+        #heading2 {
+            color: #33cf0c;
+        }
+
+        #js_root {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            color: #2d96c7;
+        }
+
+        .div-elements {
+            border: 2px solid #000000;
+            padding: 10px;
+            background-color: #eaf81e;
+        }
     </style>
 </head>
 
 <body>
 
-    <div id="root"></div>
-    <div id="react-root">
+    <!-- We have made a div with id plain_root and added plain HTML there -->
+    <div id="plain_root" class="div-elements">
+        <h1>1. Hello HTML Plain</h1>
+    </div>
+
+    <!-- We have made a div with id root and we will try to inject HTML via vanilla JS -->
+    <div id="js_root" class="div-elements">
+        
+    </div>
+
+    <div id="root">
         <!-- This h1 will be rendered BUT it will be REPLACED by the React render parameter when the rendering starts, thats why yoe wil see just a flash of the headings and then repalcement will happen -->
         <h1>react root H1</h1>
         <h1>react root H1</h1>
         <h1>react root H1</h1>
-
     </div>
 
 
@@ -38,22 +62,21 @@
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
 
-    <script src="./App.js"></script>
     <script>
+        // Evertything is JS
         const heading1 = document.createElement("h1");
-        heading1.innerHTML = "Hey HTML";
-        const root = document.getElementById("root");
-        root.appendChild(heading1);
+        heading1.innerHTML = "2. Hello HTML JS Vanilla";
+        const jsRoot = document.getElementById("js_root");
+        jsRoot.appendChild(heading1);
     </script>
+
+    <script src="./App.js"></script>
 
     <!-- <script>
         const heading2 = React.createElement("h1", {}, "Hey React");
-        const root2 = ReactDOM.createRoot(document.getElementById("react-root"));//createRoot is used to create a root for react
+        const root2 = ReactDOM.createRoot(document.getElementById("root"));//createRoot is used to create a root for react and it will only have control over this
         root2.render(heading2);
-
-        // const root2 = document.getElementById("react-root");
-        // ReactDOM.render(heading2, root2);
-     </script> -->
+    </script> -->
 
 </body>
 

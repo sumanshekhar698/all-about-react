@@ -5,7 +5,7 @@ import ReactDOM from "react-dom/client";
 
 
 //the first argument is the element type, the second argument is the element properties/attributes, the third argument is the element content/children nodes
-const heading2 = React.createElement("h1", { id: "heading2" }, "Hey React 🚀"); //React.createElement is used to create a react element
+const heading2 = React.createElement("h1", { id: "heading2", key: "heading_2" }, "Hey React 🚀"); //React.createElement is used to create a react element
 console.log(heading2); //this will print the react element of the heading2 which is an javascript object that has type, props and children
 //props is an object that contains the properties of the element
 
@@ -20,7 +20,7 @@ const parent = React.createElement(
   React.createElement("div", { id: "child" }, [// siblings can be created using Array  
     React.createElement(
       "h1",
-      { id: "heading3" },
+      { id: "heading3", key: "heading_3" },
       "2nd level nesting div heading"
     ),
     heading2,
