@@ -1,7 +1,7 @@
 {
-  "name": "04doordash-app",
+  "name": "04_swiggy-app",
   "version": "1.0.0",
-  "description": "DoorDash Landing Page",
+  "description": "Swiggy Landing Page",
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html",

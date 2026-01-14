@@ -1,7 +1,11 @@
 // You can only use import on a moudule script and not on a normal script
 import React from "react";
 import ReactDOM from "react-dom/client";
+import Description from "./Description"; // 👈 Import the component here
 
+
+// * React Element
+// React Element (JS Object) === ReactDOM.render() ===> HTML Element in the Browser
 const heading = React.createElement(
   "h1",
   { id: "heading" },
@@ -9,51 +13,51 @@ const heading = React.createElement(
 );
 console.log(heading);
 
-// * React Element
+// * JSX is HTML Like Syntax, but its not HTML OR HTML Inside JS
+// For browser to understand JSX  we need to convert it to a format that browser can understand specially for React
+const jsxHeading0 = <h1 className="headings">React Foundation by JSX</h1>; // single line declaration without small brackets
 
-
-// JSX is HTML Like Syntax, but its not HTML OR HTML Inside JS
-
-// for browser to understand JSX  we need to convert it to a format that browser can understand specially for React
-const jsxHeading0 = <h1>React Foundation by JSX</h1>; // single line declaration without small brackets
-
-const jsxHeading1 =(
-    <h1 id="heading" className="headings" tabIndex="1">
-     React Foundation by JSX
-    </h1>
-  ); //jsx is a HTML like syntax created by Meta but its not HTML
-
-
-const jsxHeading2 = (
+const jsxHeading1 = (
   <h1 id="heading" className="headings" tabIndex="1">
-   React Foundation by JSX
+    React Foundation by JSX
   </h1>
-); //use small brackets for multi line declaration
-
+);
 console.log(jsxHeading1); // * it is exactly same as a React element but it is written in a different way
 // so JSX is a syntactic sugar for React.createElement() and it is not a HTML
 // Transpiling is the process of converting JSX to React.createElement() and it is done by Babel or Webpack controlled by Parcel*
+// JSX === Babel Transpilation ===>  React Element (JS Object) === ReactDOM.render() ===> HTML Element in the Browser
 
-
+const jsxHeading2 = //use small brackets for multi line declaration
+  (
+    <h1 id="heading" className="headings" tabIndex="1">
+      React Foundation by JSX
+    </h1>
+  );
 
 // * React Components
+// React Component is a fn that returns React Element(JS Object) or JSX code
+// There are two types of React Components
+// 1. Functional Component (Modern Way) ⚡
+// ! 2. Class Based Component (Legacy Way) 🏛️
 
 // * 1. ⚡Functional Component is function that returns a JSX code/React Element
-// Also if you remove the smal braces it wil become a React Element 🌞
+// Also if you remove the small braces it wil become a React Element 🌞
 
 // ! Make sure to store in PascalCase
 const HeaderComponent0 = function () {
-  return <h1>React Functional Component 0</h1>;
+  return <h1>React Functional Component</h1>;
 };
 
 const HeaderComponent1 = () => {
   // * Arrow fn are preferred way
   return <h1>React Functional Component 1</h1>;
 };
+
 //return keyword removed in arrow fn
 const HeaderComponent2 = () => {
-  <h1>React Functional Component 2</h1>;
+  return <h1>React Functional Component 2</h1>;// return is must here
 };
+
 //curly braces removed in arrow fn
 const HeaderComponent3 = () => (
   <h1 className="heading3">React Functional Component 3</h1>
@@ -107,7 +111,10 @@ const HeaderComponent4 = () => (
     {subTitle}
     <h3>I love you {++num}</h3>
     {/* Component Composition:  Component inside a Component */}
+    <Description />
     <h2 className="heading3">React Functional Component 4 🚀 </h2>
+     {HeaderComponent2()}
+
   </div>
 );
 
@@ -115,8 +122,6 @@ const root = ReactDOM.createRoot(document.getElementById("root")); //createRoot 
 console.log(root);
 // JSX => Transpiling => React.createElement() => React Element JS Object=> ReactDom.render() => HTML Element in the Browser
 // React Element => React.createElement() =>
-
-// ! Class Based (Legacy)
 
 // root.render(jsxHeading); // we can only create one root in a react app and can use render on a React element only once in a react app
 root.render(<HeaderComponent4 />); // functional Component are rendered in this syntax

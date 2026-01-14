@@ -5971,23 +5971,90 @@ function RestaurantList(props) {
 }
 
 const Body = () => {
-  var restaurantsJSONArray =
-    swiggyData.data.cards[4].card.card.gridElements.infoWithStyle.restaurants;
-  console.log(restaurantsJSONArray[0]);
+  const [restaurants, setRestaurants] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState(null);
+  const [location, setLocation] = React.useState(null);
+
+  // Fetch restaurants using geolocation
+  React.useEffect(() => {
+    const fetchRestaurants = () => {
+      // Check if geolocation is available
+      if (!navigator.geolocation) {
+        setError("Geolocation is not supported by your browser");
+        // Fallback to default location
+        fetchSwiggyData(12.9716, 77.5946); // Default: Bangalore
+        return;
+      }
+
+      // Get user's current position
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setLocation({ lat: latitude, lng: longitude });
+          console.log(`Location: ${latitude}, ${longitude}`);
+          fetchSwiggyData(latitude, longitude);
+        },
+        (error) => {
+          console.error("Error getting location:", error);
+          setError("Unable to get your location. Using default location.");
+          // Fallback to default location
+          fetchSwiggyData(12.9716, 77.5946); // Default: Bangalore
+        }
+      );
+    };
+
+    const fetchSwiggyData = async (lat, lng) => {
+      try {
+        setLoading(true);
+        const response = await fetch(
+          `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`
+        );
+        const data = await response.json();
+        
+        // Extract restaurants from the API response
+        const restaurantsArray =
+          data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
+        setRestaurants(restaurantsArray);
+        setLoading(false);
+      } catch (err) {
+        console.error("Error fetching restaurants:", err);
+        setError("Failed to fetch restaurants");
+        setLoading(false);
+        
+        // Fallback to static data if API fails
+        if (swiggyData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants) {
+          setRestaurants(swiggyData.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
+        }
+      }
+    };
+
+    fetchRestaurants();
+  }, []);
+
+  if (loading) {
+    return <div className="body"><p>Loading restaurants...</p></div>;
+  }
+
+  if (error) {
+    console.warn(error);
+  }
+
+  const displayRestaurants = restaurants.slice(0, 7); // Display first 7 restaurants
+
   return (
-    // <RestaurantList props={restaurantsJSONArray[0]} />
     <div className="body">
-    <div className="restaurant-container">
-    <RestaurantCard resData={restaurantsJSONArray[0]} />
-    <RestaurantCard resData={restaurantsJSONArray[1]} />
-    <RestaurantCard resData={restaurantsJSONArray[2]} />
-    <RestaurantCard resData={restaurantsJSONArray[3]} />
-    <RestaurantCard resData={restaurantsJSONArray[4]} />
-    <RestaurantCard resData={restaurantsJSONArray[5]} />
-    <RestaurantCard resData={restaurantsJSONArray[6]} />
+      {location && (
+        <div style={{ padding: "10px", fontSize: "12px", color: "#666" }}>
+          Your Location: {location.lat.toFixed(4)}, {location.lng.toFixed(4)}
+        </div>
+      )}
+      <div className="restaurant-container">
+        {displayRestaurants.map((restaurant, index) => (
+          <RestaurantCard key={index} resData={restaurant} />
+        ))}
+      </div>
     </div>
-  </div>
-   
   );
 };
 
