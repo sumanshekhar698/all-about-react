@@ -2,8 +2,7 @@ import React from "react";
 import RestaurantCard from "../components/RestaurantCard";
 import Spinner from "../components/Spinner";
 import LocationMarquee from "../components/LocationMarquee";
-import { fetchRestaurants as initFetchRestaurants } from "../util/geolocation";
-
+import { fetchRestaurants as fetchRestaurants } from "../util/geolocation";
 
 const Body = () => {
   const [restaurants, setRestaurants] = React.useState([]);
@@ -13,7 +12,7 @@ const Body = () => {
 
   // Fetch restaurants using geolocation
   React.useEffect(() => {
-    const fetchSwiggyData = async (lat, lng) => {
+    const fetchSwiggyData = async (lat, lng) => {//Given lat and lng fetch restaurants
       try {
         setLoading(true);
         console.log("Fetching restaurants for:", lat, lng);
@@ -21,9 +20,8 @@ const Body = () => {
 
         // const URL = proxy + url;
         console.log("Fetching from URL:", URL);
-        const response = await fetch(URL);
+        const response = await fetch(URL);//1 s
         const data = await response.json();
-
 
         // Extract restaurants from the API response
         const restaurantsArray =
@@ -47,7 +45,7 @@ const Body = () => {
       }
     };
 
-    initFetchRestaurants(setError, setLocation, fetchSwiggyData);
+    fetchRestaurants(setError, setLocation, fetchSwiggyData);
   }, []);
 
   if (loading) {
@@ -58,15 +56,20 @@ const Body = () => {
     console.warn(error);
   }
 
-  const displayRestaurants = restaurants.slice(0, 9); // Display first 7 restaurants
+  const displayRestaurants = restaurants.slice(0, 9); // Display first 9 restaurants
   console.log("Total Restaurants Fetched:", restaurants.length);
 
   return (
     <div className="body">
       <LocationMarquee location={location} />
       <div className="restaurant-container">
-        {displayRestaurants.map((restaurant, index) => (
-          <RestaurantCard key={index} resData={restaurant} />
+        {/* {displayRestaurants.map((restaurant, index) => (
+          <RestaurantCard key={index} resData={restaurant} />//TODO fix this key issue later
+        ))} */}
+
+        {displayRestaurants.map((restaurant) => (
+          // Use the unique ID from the restaurant data
+          <RestaurantCard key={restaurant.info.id} resData={restaurant} />
         ))}
       </div>
     </div>

@@ -2,12 +2,14 @@ import React from "react";
 // Adding the asterisk or checking the default export often solves Parcel's object issue
 // import logo from "../assets/images/swiggy_logo_white.avif";
 import logo from "url:../assets/images/swiggy_logo_white.avif";
+import { useScrollDirection } from "../hooks/useScrollDirection";
 
 const Header = () => {
+  const isScrolled = useScrollDirection();
+
   return (
-    <div className="header">
+    <div className={`header ${isScrolled ? "scrolled" : ""}`}>
       <div className="logo-container">
-        {/* REMOVE THE QUOTES HERE */}
         <img src={logo} alt="Swiggy Logo" />
       </div>
       <div className="nav-items">

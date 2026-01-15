@@ -1,5 +1,3 @@
-// You can only use import on a moudule script and not on a normal script
-
 import ReactDOM from "react-dom/client";
 
 import "./css/landing_page.css";

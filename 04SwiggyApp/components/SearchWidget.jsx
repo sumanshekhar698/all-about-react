@@ -1,6 +1,7 @@
 
 import React from "react";
 
+
 const SearchWidget = ({ onSearch, searchQuery }) => {
   const [inputValue, setInputValue] = React.useState(searchQuery || "");
 
@@ -17,7 +18,7 @@ const SearchWidget = ({ onSearch, searchQuery }) => {
 
   return (
     <div className="search-container">
-      <h1>Get more from your neighborhood</h1>
+      <h1>Discover best restaurants. Swiggy it!</h1>
       <div className="search-div">
         <input
           type="text"

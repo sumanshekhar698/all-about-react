@@ -36,6 +36,11 @@ html {
   border-bottom: 1px solid rgba(255, 82, 0, 0.1);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
   animation: slideDown 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: padding 0.4s ease-in-out, height 0.4s ease-in-out;
+}
+
+.header.scrolled {
+  padding: 0.6rem 2rem;
 }
 
 @keyframes slideDown {
@@ -243,6 +248,7 @@ html {
 
 /* <=========> Restaurant Container <=========>*/
 .restaurant-container {
+  
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2.5rem;
